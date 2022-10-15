@@ -1,7 +1,7 @@
 import React , {Component} from "react";
-import Pokecard from "./Pokecard";
+import Pokedex from "./Pokedex";
 import './Pokedex.css'
-class Pokedex extends Component{
+class Pokegame extends Component{
     static defaultProps =  {
       pokemon :  [
             {id: 4, name: 'Charmander', type: 'fire', base_experience: 62},
@@ -14,27 +14,24 @@ class Pokedex extends Component{
             {id: 133, name: 'Eevee', type: 'normal', base_experience: 65}
           ]
     }
-    
+   
     render(){
-        let challange ;
-        if (this.props.whoIsWinner){
-            challange = <h1 className="Pokegame-winner">Winner</h1>
-        }else {
-            challange = <h1 className="Pokegame-loser">loser</h1>
-        }
+        let deck1 = [];
+		let deck2 = [ ...this.props.pokemon ];
+		while (deck1.length < deck2.length) {
+			let randIdx = Math.floor(Math.random() * deck2.length);
+			let randPokemon = deck2.splice(randIdx, 1)[0];
+			deck1.push(randPokemon);
+		}
+        let sum1 = deck1.reduce((lvl , pokemon) => lvl+ pokemon.base_experience , 0)
+        let sum2 = deck2.reduce((lvl , pokemon) => lvl + pokemon.base_experience , 0)
         return (
             <div >
-                <h1 className="Pokedex-title">Pokedex</h1>
-                <p>Total XP : {this.props.power}</p>
-                {challange}
-                <div className="Pokedex">
-                {this.props.pokemon.map(n =>(
-                    <Pokecard id={n.id} name={n.name} type={n.type} xp={n.base_experience} />
-                ))}
-                </div>
+                <Pokedex pokemon ={deck1} power ={sum1} whoIsWinner ={sum1 > sum2}/>
+                <Pokedex pokemon={deck2} power ={sum2} whoIsWinner={sum2 > sum1} />
             </div>
         )
     }
 }
 
-export default Pokedex;
+export default Pokegame;

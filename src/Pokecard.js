@@ -1,10 +1,12 @@
 import React , {Component} from "react";
 import './Pokecard.css'
-const pokemonImg = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
 
+const pokemonImg = 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/'
+
+const fancyPic = (number)=> ( number <= 900 ? `00${number}`.slice(-3) : number) 
 class Pokecard extends Component{
     render(){
-        let imgSrc = `${pokemonImg}${this.props.id}.png`
+        let imgSrc = `${pokemonImg}${fancyPic(this.props.id)}.png`
         return (
             <div className="Pokecard">
                 <h1>{this.props.name}</h1>
