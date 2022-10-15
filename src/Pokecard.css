@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
 .Pokecard{
    width: 300px;
   text-align: center;
@@ -9,7 +11,9 @@
 
 
 .Pokecard-info{
-    font-size: 80%;
+    font-size: 100%;
+    font-family: 'Josefin Sans', sans-serif;
+    
 }
 
 .Pokecard-img{
